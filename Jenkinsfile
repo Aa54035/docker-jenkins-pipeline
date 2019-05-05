@@ -10,7 +10,7 @@ node {
   stage('Create Docker Image') {
     dir('webapp') {
         // docker.build("aa54035/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
-       sh label: '', script: "docker run --rm -u root -p 8080:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock  -v ${HOME}:/home  aa54035/docker-jenkins-pipeline:V11"
+       sh label: '', script: "docker run --rm -u aa54035 -p 8080:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock  -v ${HOME}:/home  aa54035/docker-jenkins-pipeline:V11"
       
       //sh label: '', script: "sudo docker build -t aa54035/docker-jenkins-pipeline:${env.BUILD_NUMBER}"
       //by runing Sudo jenkins solded me that "with grate power comes great resposibility 
