@@ -9,7 +9,7 @@ node {
 
   stage('Create Docker Image') {
     dir('webapp') {
-      docker.build("Aa54035/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
+      docker.build("aa54035/docker-jenkins-pipeline:${env.BUILD_NUMBER}")
     }
   }
 
@@ -20,7 +20,7 @@ node {
 
       // Run application using Docker image
       sh "DB=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' db`"
-      sh "docker run -e DB_URI=$DB Aa54035/docker-jenkins-pipeline:${env.BUILD_NUMBER}"
+      sh "docker run -e DB_URI=$DB aa54035/docker-jenkins-pipeline:${env.BUILD_NUMBER}"
 
       // Run tests using Maven
       //dir ('webapp') {
@@ -38,7 +38,7 @@ node {
     try {
       dir('webapp') {
         sh "mvn test"
-        docker.build("Aa54035/docker-jenkins-pipeline:${env.BUILD_NUMBER}").push()
+        docker.build("aa54035/docker-jenkins-pipeline:${env.BUILD_NUMBER}").push()
       }
     } catch (error) {
 
